@@ -38,8 +38,7 @@ const post = defineCollection({
 
 const note = defineCollection({
 	loader: glob({ base: "./src/content/note", pattern: "**/*.{md,mdx}" }),
-	schema: baseSchema.extend({
-		description: z.string().optional(),
+	schema: z.object({
 		publishDate: z
 			.string()
 			.datetime({ offset: true }) // Ensures ISO 8601 format with offsets allowed (e.g. "2024-01-01T00:00:00Z" and "2024-01-01T00:00:00+02:00")
@@ -55,4 +54,24 @@ const tag = defineCollection({
 	}),
 });
 
-export const collections = { post, note, tag };
+const project = defineCollection({
+	loader: glob({ base: "./src/content/project", pattern: "**/*.{md,mdx}" }),
+	schema: ({ image }) =>
+		baseSchema.extend({
+			slug: z.string(),
+			description: z.string(),
+			status: z.enum(["active", "archived", "prototype"]).default("active"),
+			repo: z.string().url().optional(),
+			link: z.string().url().optional(),
+			tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+			stack: z.array(z.string()).default([]),
+			coverImage: z
+				.object({
+					alt: z.string(),
+					src: image(),
+				})
+				.optional(),
+		}),
+});
+
+export const collections = { post, note, tag, project };

@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+const { project }: { project: CollectionEntry<"project"> } = Astro.props;
+const { title, description, slug, repo, link, status, stack } = project.data;
+---
+
+<li>
+	<div>
+		<div class="flex items-center gap-2">
+			<h3 class="leading-tight font-medium">
+				<a href={`/projects/${slug}/`} class="cactus-link">
+					{title}
+				</a>
+			</h3>
+			{status === "prototype" && <span class="text-muted ml-2 text-sm">(Prototype)</span>}
+			{status === "archived" && <span class="text-muted ml-2 text-sm">(Archived)</span>}
+			{
+				repo && (
+					<a href={repo} class="text-muted hover:text-link transition-colors hover:underline">
+						<Icon aria-hidden="true" class="h-5 w-5" focusable="false" name="mdi:github" />
+					</a>
+				)
+			}
+			{
+				link && (
+					<a href={link} class="text-muted hover:text-link transition-colors hover:underline">
+						<Icon aria-hidden="true" class="h-5 w-5" focusable="false" name="mdi:web" />
+					</a>
+				)
+			}
+		</div>
+		<p class="text-subtext1 mt-1">{description}</p>
+		{
+			stack.length > 0 && (
+				<p class="text-muted mt-1 text-sm">
+					<b class="text-base-content/80">Tech:</b> {stack.join(", ")}
+				</p>
+			)
+		}
+		<div class="mt-1 flex gap-3 text-sm"></div>
+	</div>
+</li>
