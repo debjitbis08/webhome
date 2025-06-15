@@ -9,7 +9,7 @@ import ProjectPreview from "@/components/ProjectPreview.astro";
 import { collectionDateSort } from "@/utils/date";
 
 // Posts
-const MAX_POSTS = 10;
+const MAX_POSTS = 5;
 const allPosts = await getAllPosts();
 const allPostsByDate = allPosts
 	.sort(collectionDateSort)
@@ -17,22 +17,40 @@ const allPostsByDate = allPosts
 
 // Notes
 const MAX_NOTES = 5;
-const allNotes = await getCollection("note");
-const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
-const allProjects = await getCollection("project");
+const allNotes = await getCollection("note", ({ data }) => {
+	return data.pinned === false;
+});
+const pinnedNote = (
+	await getCollection("note", ({ data }) => {
+		return data.pinned === true;
+	})
+)
+	.sort(collectionDateSort)
+	.slice(0, 1);
+const latestNotes = pinnedNote.concat(allNotes.sort(collectionDateSort).slice(0, MAX_NOTES));
+
+// Projects
+const unsortedProjects = await getCollection("project");
+const allProjects = unsortedProjects.sort((a, b) => {
+	return a.data.order - b.data.order;
+});
 ---
 
 <PageLayout meta={{ title: "Home" }}>
 	<section>
-		<h1 class="title mb-6">Hello World!</h1>
+		<h1 class="title mb-6">Welcome to whatever this is.</h1>
 		<p class="mb-4 leading-relaxed">
-			Nice to see you here! I am not sure how you landed here, but make youself comfortable and
-			hopefully you will find something to enjoy.
+			I make things, quiet tools, unfinished thoughts, small projects, sometimes without knowing
+			why.
+		</p>
+		<p class="mb-4 leading-relaxed">
+			They don't always lead anywhere, but they mean something while they're being made. You're
+			welcome to look around.
 		</p>
 		<SocialList />
 	</section>
 	<section class="mt-16">
-		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Posts</a></h2>
+		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Recent Posts</a></h2>
 		<ul class="space-y-6" role="list">
 			{
 				allPostsByDate.map((p) => (

@@ -2,6 +2,7 @@
 title: "Diceware"
 slug: "diceware"
 description: Dice generated passphrases & random strings.
+order: 4
 status: "active"
 repo: "https://github.com/debjitbis08/diceware"
 link: "https://diceware.debjitbiswas.com"

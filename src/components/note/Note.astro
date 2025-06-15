@@ -10,27 +10,36 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 
 const { as: Tag = "div", note, isPreview = false } = Astro.props;
 const { Content } = await render(note);
+const { pinned } = note.data;
 ---
 
 <article
 	class:list={[
-		isPreview && "inline-grid w-full rounded-md bg-[#e6e9ef] px-4 py-3 dark:bg-[#313244]",
+		isPreview && "inline-grid w-full rounded-md px-4 py-3",
+		isPreview &&
+			(pinned
+				? "border dark:border-[#f9e2af] dark:bg-[#313244]"
+				: "bg-[#e6e9ef] dark:bg-[#313244]"),
 	]}
 	data-pagefind-body={isPreview ? false : true}
 >
-	<FormattedDate
-		dateTimeOptions={{
-			hour: "2-digit",
-			minute: "2-digit",
-			year: "2-digit",
-			month: "short",
-			day: "2-digit",
-		}}
-		date={note.data.publishDate}
-	/>
+	<div class="mb-2 flex items-center justify-between">
+		<FormattedDate
+			dateTimeOptions={{
+				hour: "2-digit",
+				minute: "2-digit",
+				year: "2-digit",
+				month: "short",
+				day: "2-digit",
+			}}
+			date={note.data.publishDate}
+		/>
+		{pinned && <span class="ml-2 text-sm font-medium">📌</span>}
+	</div>
+
 	<div
-		class="prose prose-sm prose-cactus mt-4 max-w-none [&>p:last-of-type]:mb-0"
-		class:list={{ "line-clamp-6": isPreview }}
+		class="prose prose-sm prose-cactus mt-2 max-w-none [&>p:last-of-type]:mb-0"
+		class:list={{ "line-clamp-6": isPreview && !pinned }}
 	>
 		<Content />
 	</div>
