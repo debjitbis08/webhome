@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, render } from "astro:content";
+import LinkPreview from "./LinkPreview.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 import type { HTMLTag, Polymorphic } from "astro/types";
 
@@ -11,6 +12,43 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 const { as: Tag = "div", note, isPreview = false } = Astro.props;
 const { Content } = await render(note);
 const { pinned } = note.data;
+
+const linkMatch = note.body.match(/https?:\/\/[^\s)]+/);
+let previewData: {
+	url: string;
+	title?: string;
+	description?: string;
+	image?: string;
+} | null = null;
+if (linkMatch) {
+	const url = linkMatch[0];
+	try {
+		const res = await fetch(url);
+		const html = await res.text();
+		const meta = (name: string) =>
+			html.match(
+				new RegExp(`<meta[^>]*(?:property|name)=["']${name}["'][^>]*content=["']([^"']+)["']`, "i"),
+			)?.[1];
+
+		const rawImage = meta("og:image") || meta("twitter:image");
+		let image: string | undefined;
+		if (rawImage) {
+			try {
+				image = new URL(rawImage, url).href;
+			} catch {
+				image = rawImage;
+			}
+		}
+		previewData = {
+			url,
+			title: meta("og:title") || meta("twitter:title") || html.match(/<title>(.*?)<\/title>/i)?.[1],
+			description: meta("og:description") || meta("twitter:description"),
+			image,
+		};
+	} catch {
+		previewData = null;
+	}
+}
 ---
 
 <article
@@ -44,6 +82,7 @@ const { pinned } = note.data;
 		class:list={{ "line-clamp-6": isPreview && !pinned }}
 	>
 		<Content />
+		{previewData && <LinkPreview {...previewData} />}
 	</div>
 </article>
 <script>
