@@ -3,7 +3,7 @@ pinned: true
 publishDate: "2025-06-15T06:34:00Z"
 ---
 
-🚀 Learn Programming with Me!
+## 🚀 Learn Programming with Me!
 
 Whether you love structure 🗂️ or prefer diving into hands-on projects 🛠️, I've got you covered!
 
