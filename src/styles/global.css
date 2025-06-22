@@ -22,6 +22,10 @@
 	--color-accent-2: #7287fd;
 	--color-quote: #6c6f85;
 	--color-surface0: #ccd0da;
+	--color-blue: #1e66f5;
+	--color-sapphire: #209fb5;
+	--color-subtext0: #6c6f85;
+	--color-subtext1: #5c5f77;
 }
 
 @layer base {
@@ -48,6 +52,10 @@
 			--color-accent-2: #b4befe;
 			--color-quote: #a6adc8;
 			--color-surface0: #313244;
+			--color-blue: #89b4fa;
+			--color-sapphire: #74c7ec;
+			--color-subtext0: #a6adc8;
+			--color-subtext1: #bac2de;
 		}
 	}
 

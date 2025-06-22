@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-	plugins: [require("@tailwindcss/typography")],
+	plugins: [require("@tailwindcss/typography"), require("@catppuccin/tailwindcss")],
 	theme: {
 		extend: {
 			typography: () => ({

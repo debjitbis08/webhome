@@ -1,0 +1,29 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+---
+
+<PageLayout meta={{ title: "Home" }}>
+	<h1 class="title text-accent-2 mb-4 text-2xl font-bold">Thank you for reaching out!</h1>
+	<p class="text-lg">
+		I've received your message. If you shared your email, I'll try to reply soon.
+	</p>
+	<p class="mt-6">
+		<a href="/" class="cactus-link flex items-center gap-2 underline hover:text-blue-800">
+			<span>
+				<svg
+					fill="currentColor"
+					stroke-width="0"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 448 512"
+					style="overflow: visible; color: currentcolor;"
+					height="1em"
+					width="1em"
+					><path
+						d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H109.3l105.3-105.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+					></path></svg
+				>
+			</span>
+			<span>Back to home</span>
+		</a>
+	</p>
+</PageLayout>

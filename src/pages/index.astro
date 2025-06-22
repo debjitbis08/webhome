@@ -37,8 +37,9 @@ const allProjects = unsortedProjects.sort((a, b) => {
 ---
 
 <PageLayout meta={{ title: "Home" }}>
-	<section>
+	<section x-data="{ showForm: false }">
 		<h1 class="title mb-6">Welcome to whatever this is.</h1>
+
 		<p class="mb-4 leading-relaxed">
 			I make things, quiet tools, unfinished thoughts, small projects, sometimes without knowing
 			why.
@@ -47,6 +48,85 @@ const allProjects = unsortedProjects.sort((a, b) => {
 			They don't always lead anywhere, but they mean something while they're being made. You're
 			welcome to look around.
 		</p>
+
+		<p class="mb-4 leading-relaxed">
+			If you're a student or just starting out and something here resonates — I'm happy to chat.
+			Whether it's questions, ideas, or just a conversation, you're welcome to reach out.
+		</p>
+
+		<ul class="mb-6 space-y-2">
+			<li class="flex items-center gap-2">
+				<span>
+					<svg
+						fill="currentColor"
+						stroke-width="0"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 512 512"
+						style="overflow: visible; color: currentcolor;"
+						height="1em"
+						width="1em"
+						><path
+							d="M480 96c17.7 0 32 14.3 32 32s-14.3 32-32 32H272V96h208zM320 288c17.7 0 32 14.3 32 32s-14.3 32-32 32h-64c-17.7 0-32-14.3-32-32s14.3-32 32-32h64zm64-64c0 17.7-14.3 32-32 32h-48c-17.7 0-32-14.3-32-32s14.3-32 32-32h48c17.7 0 32 14.3 32 32zm-96 160c17.7 0 32 14.3 32 32s-14.3 32-32 32h-64c-17.7 0-32-14.3-32-32s14.3-32 32-32h64zm-88-96h.6c-5.4 9.4-8.6 20.3-8.6 32 0 13.2 4 25.4 10.8 35.6-24.9 8.7-42.8 32.5-42.8 60.4 0 11.7 3.1 22.6 8.6 32H160C71.6 448 0 376.4 0 288v-61.7c0-42.4 16.9-83.1 46.9-113.1l11.6-11.6C82.5 77.5 115.1 64 149 64h27c35.3 0 64 28.7 64 64v88c0 22.1-17.9 40-40 40s-40-17.9-40-40v-56c0-8.8-7.2-16-16-16s-16 7.2-16 16v56c0 39.8 32.2 72 72 72z"
+						></path></svg
+					>
+				</span>
+				<span>
+					<a
+						href="https://app.simplymeet.me/lambda-classes/debjit-biswas-casual-chat?day=2025-06-23"
+						target="_blank"
+						class="cactus-link">Book a casual chat</a
+					>
+				</span>
+			</li>
+			<li class="flex items-center gap-2">
+				<span>
+					<svg
+						fill="currentColor"
+						stroke-width="0"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 512 512"
+						style="overflow: visible; color: currentcolor;"
+						height="1em"
+						width="1em"
+						><path
+							d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48H48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0L0 176z"
+						></path></svg
+					>
+				</span>
+				<button @click="showForm = !showForm" class="cactus-link cursor-pointer">
+					Send a message
+				</button>
+			</li>
+		</ul>
+
+		<div x-show="showForm" x-transition class="mb-8 space-y-4">
+			<form name="casual-chat" method="POST" action="/thanks" netlify netlify-honeypot="bot-field">
+				<input type="hidden" name="form-name" value="casual-chat" />
+				<p hidden>
+					<label>Don't fill this out if you're human: <input name="bot-field" /></label>
+				</p>
+
+				<label class="mb-4 block">
+					<div class="mb-2">Your message:</div>
+					<textarea name="message" required rows="4" class="w-full rounded border p-2"></textarea>
+				</label>
+
+				<label class="mb-4 block">
+					<div class="mb-2">
+						Your email <span class="text-subtext0">(optional, if you'd like a reply)</span>:
+					</div>
+					<input type="email" name="email" class="w-full rounded border p-2" />
+				</label>
+
+				<button
+					type="submit"
+					class="mt-4 cursor-pointer rounded bg-[var(--color-blue)] px-4 pt-2 pb-1 text-[var(--color-global-bg)] hover:bg-[var(--color-sapphire)]"
+				>
+					Send
+				</button>
+			</form>
+		</div>
+
 		<SocialList />
 	</section>
 	<section class="mt-16">
