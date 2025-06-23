@@ -9,7 +9,9 @@ import { Icon } from "astro-icon/components";
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const MAX_NOTES_PER_PAGE = 10;
-	const allNotes = await getCollection("note");
+	const allNotes = await getCollection("note", ({ data }) => {
+		return data.pinned === false;
+	});
 	return paginate(allNotes.sort(collectionDateSort), { pageSize: MAX_NOTES_PER_PAGE });
 }) satisfies GetStaticPaths;
 
@@ -39,6 +41,14 @@ const paginationProps = {
 		},
 	}),
 };
+
+const pinnedNote = (
+	await getCollection("note", ({ data }) => {
+		return data.pinned === true;
+	})
+)
+	.sort(collectionDateSort)
+	.slice(0, 1);
 ---
 
 <PageLayout meta={meta}>
@@ -51,7 +61,7 @@ const paginationProps = {
 		</h1>
 		<ul class="mt-6 space-y-8 text-start">
 			{
-				page.data.map((note) => (
+				pinnedNote.concat(page.data).map((note) => (
 					<li class="">
 						<Note note={note} as="h2" isPreview />
 					</li>

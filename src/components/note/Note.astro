@@ -60,6 +60,24 @@ if (linkMatch) {
 				: "bg-[#e6e9ef] dark:bg-[#313244]"),
 	]}
 	data-pagefind-body={isPreview ? false : true}
+	data-is-preview={isPreview}
+	data-is-pinned={pinned}
+	x-data="{
+		expanded: false,
+		showMore: false,
+		init() {
+			const content = this.$refs.noteBody;
+			// Let the browser paint first with clamping in place
+			requestAnimationFrame(() => {
+				const isPreview = this.$el.dataset.isPreview === 'true';
+				const isPinned = this.$el.dataset.isPinned === 'true';
+        this.expanded = isPinned;
+				if (isPreview && !isPinned && content.scrollHeight > content.clientHeight) {
+					this.showMore = true;
+				}
+			});
+		}
+	}"
 >
 	<div class="mb-2 flex items-center justify-between">
 		<FormattedDate
@@ -78,12 +96,21 @@ if (linkMatch) {
 	</div>
 
 	<div
+		x-ref="noteBody"
 		class="prose prose-sm prose-cactus mt-2 max-w-none [&>p:last-of-type]:mb-0"
-		class:list={{ "line-clamp-6": isPreview && !pinned }}
+		:class="{ 'line-clamp-6': !expanded }"
 	>
 		<Content />
 		{previewData && <LinkPreview {...previewData} />}
 	</div>
+
+	<button
+		x-show="showMore && !expanded"
+		x-on:click="expanded = true"
+		class="cactus-link mt-2 cursor-pointer text-left text-sm"
+	>
+		Read more
+	</button>
 </article>
 <script>
 	document.addEventListener("DOMContentLoaded", () => {
