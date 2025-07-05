@@ -2,7 +2,7 @@
 	"name": "webhome",
 	"version": "6.5.0",
 	"scripts": {
-		"dev": "astro dev",
+		"dev": "astro dev --port 4324",
 		"start": "astro dev",
 		"build": "astro build",
 		"postbuild": "pagefind --site dist",

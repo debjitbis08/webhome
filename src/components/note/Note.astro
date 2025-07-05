@@ -3,6 +3,7 @@ import { type CollectionEntry, render } from "astro:content";
 import LinkPreview from "./LinkPreview.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 import type { HTMLTag, Polymorphic } from "astro/types";
+import { Icon } from "astro-icon/components";
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 	note: CollectionEntry<"note">;
@@ -71,7 +72,7 @@ if (linkMatch) {
 			requestAnimationFrame(() => {
 				const isPreview = this.$el.dataset.isPreview === 'true';
 				const isPinned = this.$el.dataset.isPinned === 'true';
-        this.expanded = isPinned;
+        this.expanded = isPinned || !isPreview;
 				if (isPreview && !isPinned && content.scrollHeight > content.clientHeight) {
 					this.showMore = true;
 				}
@@ -92,7 +93,20 @@ if (linkMatch) {
 			}}
 			date={note.data.publishDate}
 		/>
-		{pinned && <span class="ml-2 text-sm font-medium">📌</span>}
+		<span class="flex items-center gap-2">
+			{pinned && <span class="text-sm font-medium">📌</span>}
+			{
+				isPreview ? (
+					<a
+						aria-label="Permalink"
+						class="text-muted hover:text-link transition-colors hover:underline"
+						href={`/notes/${note.id}/`}
+					>
+						<Icon aria-hidden="true" class="h-5 w-5" focusable="false" name="mdi:link-variant" />
+					</a>
+				) : null
+			}
+		</span>
 	</div>
 
 	<div
