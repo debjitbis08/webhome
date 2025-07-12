@@ -2,9 +2,9 @@
 title: "ℕatory"
 slug: "natory"
 description: A Creative Math Puzzle Game.
-order: 3
+order: 4
 status: "active"
 link: "https://playnatory.com"
-stack: ["TypeScript", "SolidJS", "Astro"]
+stack: ["TypeScript", "SolidJS", "Astro", "Supabase"]
 tags: ["game", "math"]
 ---
