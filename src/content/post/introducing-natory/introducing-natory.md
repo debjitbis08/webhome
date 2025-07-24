@@ -1,8 +1,8 @@
 ---
 title: "I Made a Game – Natory"
 description: ""
-publishDate: "22 Feb 2025"
-updatedDate: 13 Feb 2025
+publishDate: 13 Feb 2025
+updatedDate: 22 Feb 2025
 tags: ["project", "game", "natory"]
 ---
 
