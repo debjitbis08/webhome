@@ -16,7 +16,7 @@
 	"dependencies": {
 		"@astrojs/alpinejs": "^0.4.8",
 		"@astrojs/markdown-remark": "^6.3.2",
-		"@astrojs/mdx": "4.3.0",
+		"@astrojs/mdx": "4.3.3",
 		"@astrojs/rss": "4.0.11",
 		"@astrojs/sitemap": "3.4.0",
 		"@catppuccin/tailwindcss": "^0.1.6",
