@@ -24,7 +24,7 @@
 		"@types/alpinejs": "^3.13.11",
 		"alpinejs": "^3.14.9",
 		"astro": "5.8.0",
-		"astro-expressive-code": "^0.41.2",
+		"astro-expressive-code": "^0.41.3",
 		"astro-icon": "^1.1.5",
 		"astro-robots-txt": "^1.0.0",
 		"astro-webmanifest": "^1.0.0",
