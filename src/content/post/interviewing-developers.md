@@ -2,8 +2,17 @@
 title: What Years of Interviewing Developers Taught Me
 description: Lessons learned over years of interviewing developers, from early mistakes to a refined, empathetic, and practical approach that focuses on learning ability, real-world problem solving, and team fit.
 publishDate: 10 Aug 2025
+updatedDate: 11 Aug 2025
 tags: ["hiring", "interviews", "developers", "team"]
 ---
+
+The last person I hired was rejected by the earlier panel, they couldn't write basic programs. We still brought them on for a frontend role. It didn't work out in that position, but instead of letting them go, we found a different role where they could contribute. It was a gamble I was willing to take. I believed in them and gave them all the support I could, and I’m happy to say that today, a few years later, they’re doing really well, even learning programming in their own way.
+
+A few years ago, I never would have hired them. Back then, my interviews were heavily weighted toward knowledge and skills. Now, I see the most important ability is the capacity to learn. This person had one standout strength: they could take a problem, dive deep, and learn whatever was needed to solve it. For me, that’s non-negotiable, and in some cases, like this one, it’s also sufficient.
+
+This decision wasn't luck, and it wasn't a sudden change in my thinking. It was the outcome of years of learning, experimenting, and refining how I interview. Along the way, I made mistakes, adjusted, and slowly arrived at a style that works for me, my team, and the candidates.
+
+Here are the principles that now guide me whenever I interview a developer.
 
 ## Part 1: The Principles
 
