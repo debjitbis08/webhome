@@ -1,0 +1,46 @@
+# Decap CMS configuration for this Astro site
+
+# Backend: using Netlify Identity + Git Gateway (simplest on Netlify)
+# If you prefer GitHub OAuth, switch to:
+# backend:
+#   name: github
+#   repo: <your-username>/<your-repo>
+#   branch: main
+backend:
+  name: git-gateway
+  branch: main
+
+# Store uploaded media in /public/uploads so they’re served at /uploads
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Optional: allow working locally with decap-proxy-server
+# local_backend: true
+
+# Simple Notes collection mapping to src/content/note
+collections:
+  - name: note
+    label: Notes
+    label_singular: Note
+    folder: "src/content/note"
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: Publish Date
+        name: publishDate
+        widget: datetime
+        time_format: HH:mm
+        format: "YYYY-MM-DDTHH:mm:ssZ" # ISO 8601 with offset
+      - label: Pinned
+        name: pinned
+        widget: boolean
+        required: false
+        default: false
+      - label: Body
+        name: body
+        widget: markdown
+
