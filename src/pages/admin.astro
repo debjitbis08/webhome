@@ -47,9 +47,9 @@ export const prerender = true;
             window.__DECAP_CMS_LOADED__ = true;
           };
           document.body.appendChild(s);
-          // Hide custom login view once CMS takes over
-          var loginView = document.getElementById('login-view');
-          if (loginView) loginView.style.display = 'none';
+          // Hide the entire placeholder container so CMS can occupy full page
+          var adminRoot = document.getElementById('admin-root');
+          if (adminRoot) adminRoot.style.display = 'none';
         }
 
         function init() {
@@ -75,9 +75,9 @@ export const prerender = true;
               });
             }
             window.netlifyIdentity.on('logout', function () {
-              // On logout, show login again
-              var loginView = document.getElementById('login-view');
-              if (loginView) loginView.style.display = '';
+              // On logout, show the admin container again
+              var adminRoot = document.getElementById('admin-root');
+              if (adminRoot) adminRoot.style.display = '';
               // Optionally reload to reset CMS state
               window.location.reload();
             });
