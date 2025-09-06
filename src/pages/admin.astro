@@ -31,8 +31,8 @@ export const prerender = true;
       </div>
     </main>
 
-    <!-- Netlify Identity widget to handle GitHub auth -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- Netlify Identity widget to handle GitHub auth (CDN-hosted to avoid CORS hiccups) -->
+    <script src="https://cdn.jsdelivr.net/npm/netlify-identity-widget@1.10.1/build/netlify-identity-widget.min.js" crossorigin="anonymous"></script>
 
     <script>
       (function () {
@@ -77,6 +77,23 @@ export const prerender = true;
             // Ensure widget initializes to enable currentUser detection
             window.netlifyIdentity.init();
           }
+          // Fallback: if the widget failed to load (CORS, blockers), show a hint
+          setTimeout(function () {
+            if (!window.netlifyIdentity) {
+              var loginView = document.getElementById('login-view');
+              if (loginView) {
+                var warn = document.createElement('p');
+                warn.style.color = '#b45309';
+                warn.style.background = '#fffbeb';
+                warn.style.border = '1px solid #f59e0b';
+                warn.style.padding = '.5rem .75rem';
+                warn.style.borderRadius = '.5rem';
+                warn.style.marginTop = '1rem';
+                warn.textContent = 'Could not load Identity widget. If developing locally, use `netlify dev` or ensure third‑party scripts are allowed.';
+                loginView.appendChild(warn);
+              }
+            }
+          }, 1500);
         }
 
         if (document.readyState === 'loading') {
