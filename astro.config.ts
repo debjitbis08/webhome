@@ -29,7 +29,9 @@ export default defineConfig({
     image: {
         domains: ["webmention.io"],
     },
-    integrations: [expressiveCode(expressiveCodeOptions), icon(), sitemap(), mdx(), robotsTxt(), webmanifest({
+    integrations: [expressiveCode(expressiveCodeOptions), icon(), sitemap({
+        exclude: ["/admin", "/admin/**"],
+    }), mdx(), robotsTxt(), webmanifest({
         // See: https://github.com/alextim/astro-lib/blob/main/packages/astro-webmanifest/README.md
         name: siteConfig.title,
         short_name: "Astro_Cactus", // optional
