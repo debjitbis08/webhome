@@ -22,6 +22,8 @@ collections:
   - name: note
     label: Notes
     label_singular: Note
+    identifier_field: publishDate
+    summary: "{{publishDate}}"
     folder: "src/content/note"
     create: true
     extension: md
@@ -43,4 +45,3 @@ collections:
       - label: Body
         name: body
         widget: markdown
-
