@@ -35,10 +35,17 @@ export const prerender = true;
 
     <script>
       (function () {
+        // Ensure CMS script is only injected once
         function loadCMS() {
+          if (window.__DECAP_CMS_LOADED__) return;
+          if (document.getElementById('decap-cms-script')) return;
           // Dynamically load Decap CMS only after authentication
           var s = document.createElement('script');
+          s.id = 'decap-cms-script';
           s.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+          s.onload = function () {
+            window.__DECAP_CMS_LOADED__ = true;
+          };
           document.body.appendChild(s);
           // Hide custom login view once CMS takes over
           var loginView = document.getElementById('login-view');
@@ -58,14 +65,15 @@ export const prerender = true;
 
           if (window.netlifyIdentity) {
             // After GitHub redirects back, Identity initializes with current user
-            window.netlifyIdentity.on('init', function (user) {
-              if (user) {
+            if (!window.__NI_EVENTS_WIRED__) {
+              window.__NI_EVENTS_WIRED__ = true;
+              window.netlifyIdentity.on('init', function (user) {
+                if (user) loadCMS();
+              });
+              window.netlifyIdentity.on('login', function () {
                 loadCMS();
-              }
-            });
-            window.netlifyIdentity.on('login', function () {
-              loadCMS();
-            });
+              });
+            }
             window.netlifyIdentity.on('logout', function () {
               // On logout, show login again
               var loginView = document.getElementById('login-view');
