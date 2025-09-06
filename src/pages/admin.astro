@@ -46,17 +46,7 @@ export const prerender = true;
           if (loginView) loginView.style.display = 'none';
         }
 
-        function loggedIn() {
-          return window.netlifyIdentity && window.netlifyIdentity.currentUser();
-        }
-
         function init() {
-          // If already logged in, load CMS immediately
-          if (loggedIn()) {
-            loadCMS();
-            return;
-          }
-
           // Wire the GitHub login button to direct provider authorization
           var btn = document.getElementById('login-github');
           if (btn) {
@@ -68,6 +58,12 @@ export const prerender = true;
           }
 
           if (window.netlifyIdentity) {
+            // After GitHub redirects back, Identity initializes with current user
+            window.netlifyIdentity.on('init', function (user) {
+              if (user) {
+                loadCMS();
+              }
+            });
             window.netlifyIdentity.on('login', function () {
               loadCMS();
             });
