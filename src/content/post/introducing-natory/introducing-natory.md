@@ -36,7 +36,7 @@ One thing I feel strongly about is that math is not just about logic or blindly 
 
 People usually associate math with rigorous processes and rigid formulas. However, the type of mathematics that mathematicians do involves creativity, exploration, and intuition.
 
-To arrive at a proof, mathematicians do more than follow predetermined rules. They imagine, explore, and play with concepts until something clicks. I want Natory to offer that kind of experience. It is not about solving fixed problems—it's about discovering patterns and making connections.
+To arrive at a proof, mathematicians do more than follow predetermined rules. They imagine, explore, and play with concepts until something clicks. I want Natory to offer that kind of experience. It is not about solving fixed problems, it's about discovering patterns and making connections.
 
 ## Only the Beauty of Numbers
 
