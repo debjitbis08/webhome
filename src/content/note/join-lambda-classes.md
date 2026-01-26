@@ -1,6 +1,6 @@
 ---
-pinned: true
-publishDate: "2025-06-15T06:34:00Z"
+publishDate: 2025-06-15T06:34:00Z
+pinned: false
 ---
 
 ## 🚀 Learn Programming with Me!
