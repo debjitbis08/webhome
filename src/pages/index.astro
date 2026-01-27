@@ -38,24 +38,25 @@ const allProjects = unsortedProjects.sort((a, b) => {
 
 <PageLayout meta={{ title: "Home" }}>
 	<section x-data="{ showForm: false }">
-		<h1 class="title mb-6">Welcome to whatever this is.</h1>
+		<h1 class="title mb-6">I build, unblock, and evolve products.</h1>
 
 		<p class="mb-4 leading-relaxed">
-			I make things, quiet tools, unfinished thoughts, small projects, sometimes without knowing
-			why.
+			My focus is on 0 to 1 builds, taking ideas from concept to a shipped product with a strong
+			foundation and fast time-to-market. I blend design thinking with lean execution, working solo
+			or with small teams, using AI where it fits and solid engineering where it doesn't.
 		</p>
 		<p class="mb-4 leading-relaxed">
-			They don't always lead anywhere, but they mean something while they're being made. You're
-			welcome to look around.
+			I also step in when things get difficult. Whether it's resolving a technical crisis,
+			unblocking a stalled project, or modernizing legacy systems, I help teams regain momentum and
+			technical clarity.
 		</p>
 
-		<p class="mb-4 leading-relaxed">
-			If you're a student or just starting out and something here resonates, I'm happy to chat.
-			Whether it's questions, ideas, or just a conversation, you're welcome to reach out.
+		<p class="mb-4 leading-relaxed font-bold">
+			I am available for consulting and high-impact project work.
 		</p>
 
 		<ul class="mb-6 space-y-2">
-			<li class="flex items-center gap-2">
+			<li class="flex hidden items-center gap-2">
 				<span>
 					<svg
 						fill="currentColor"
@@ -94,7 +95,7 @@ const allProjects = unsortedProjects.sort((a, b) => {
 					>
 				</span>
 				<button @click="showForm = !showForm" class="cactus-link cursor-pointer">
-					Send a message
+					Get in touch
 				</button>
 			</li>
 		</ul>
