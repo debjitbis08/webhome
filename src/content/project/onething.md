@@ -2,7 +2,7 @@
 title: "OneThing"
 slug: "onething"
 description: Minimal task manager that helps you focus on one thing at a time. Designed for clarity, built for momentum.
-order: 6
+order: 8
 status: "archived"
 link: "https://one-thing.app"
 stack: ["Astro", "AlpineJS", "Tailwind", "IndexedDB", "Supabase"]
