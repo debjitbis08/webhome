@@ -5,6 +5,6 @@ description: "A set of hands-on modules built around solving problems and discov
 order: 4
 status: "active"
 link: "https://www.abcof.org"
-stack: ["JavaScript"]
+stack: ["Astro", "SolidJS", "Tailwind"]
 tags: ["education", "teaching"]
 ---

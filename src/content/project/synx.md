@@ -5,6 +5,7 @@ description: "An experimental reactive frontend library that models UI as a fold
 order: 2
 status: "active"
 link: "https://github.com/debjitbis08/synx"
+repo: "https://github.com/debjitbis08/synx"
 stack: ["TypeScript", "FRP"]
 tags: ["library", "reactive", "frontend"]
 ---
